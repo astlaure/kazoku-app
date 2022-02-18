@@ -72,6 +72,14 @@ export class TransactionCalendarComponent implements OnInit {
     this.detailsModal = false;
   }
 
+  deleteDetails() {
+    if (this.selectedTransaction) {
+      this.transactionService.deleteTransaction(this.selectedTransaction.id)
+        .subscribe(() => this.loadTransactions());
+    }
+    this.detailsModal = false;
+  }
+
   loadTransactions() {
     this.transactionService.getTransactions(this.queryParams).subscribe({
       next: (values) => {

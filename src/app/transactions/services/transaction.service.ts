@@ -21,4 +21,8 @@ export class TransactionService {
   createTransaction(createTransaction: CreateTransaction) {
     return this.httpClient.post('api/transactions', createTransaction);
   }
+
+  deleteTransaction(id: number) {
+    return this.httpClient.delete(`api/transactions/${id}`);
+  }
 }

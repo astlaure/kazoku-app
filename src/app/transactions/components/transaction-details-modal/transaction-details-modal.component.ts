@@ -9,6 +9,7 @@ import { Transaction } from '../../models/transaction.model';
 export class TransactionDetailsModalComponent implements OnInit, OnChanges {
   @Input() transaction?: Transaction;
   @Output() closeEvent = new EventEmitter();
+  @Output() deleteEvent = new EventEmitter();
 
   constructor() { }
 
@@ -20,5 +21,9 @@ export class TransactionDetailsModalComponent implements OnInit, OnChanges {
 
   onClose() {
     this.closeEvent.emit();
+  }
+
+  onDelete() {
+    this.deleteEvent.emit();
   }
 }

@@ -14,5 +14,6 @@
     *ngIf="detailsModal"
     [transaction]="selectedTransaction"
     (closeEvent)="closeDetails()"
+    (deleteEvent)="deleteDetails()"
   ></app-transaction-details-modal>
 </div>
