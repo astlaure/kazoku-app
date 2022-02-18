@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="flex-grid justify-center">
+    <div class="column medium-6">
+      <div class="card">
+        <h2>Login</h2>
+        <form action="#" class="form" (submit)="onSubmit()" [formGroup]="loginForm">
+          <p *ngIf="submitError" class="alert alert-error">Wrong credentials</p>
+          <label for="username">
+            Username
+            <input type="text" name="username" id="username" formControlName="username">
+            <ng-container *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.errors">
+              <p *ngIf="loginForm.get('username')?.errors?.['required']" class="error-message">
+                The username is required
+              </p>
+              <p *ngIf="loginForm.get('username')?.errors?.['email']" class="error-message">
+                The username must be an email
+              </p>
+            </ng-container>
+          </label>
+          <label for="password">
+            Password
+            <input type="password" name="password" id="password" formControlName="password">
+            <ng-container *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors">
+              <p *ngIf="loginForm.get('password')?.errors?.['required']" class="error-message">
+                The password is required
+              </p>
+            </ng-container>
+          </label>
+          <button type="submit">Log in</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

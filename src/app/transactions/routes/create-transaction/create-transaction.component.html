@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="flex-grid justify-center">
+    <div class="column medium-6">
+      <form action="#" class="form" (submit)="onSubmit()" [formGroup]="createTransactionForm">
+        <label for="description">
+          Description
+          <input type="text" name="description" id="description" formControlName="description">
+        </label>
+        <label for="category">
+          Category
+          <select name="category" id="category" formControlName="category">
+            <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+          </select>
+        </label>
+        <label for="transactionDate">
+          Transaction Date
+          <input type="date" name="transactionDate" id="transactionDate" formControlName="transactionDate">
+        </label>
+        <label for="total">
+          Total
+          <input type="number" name="total" id="total" min="0.00" step="0.01" formControlName="total">
+        </label>
+        <button type="submit">Add Transaction</button>
+      </form>
+    </div>
+  </div>
+</div>

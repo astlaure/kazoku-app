@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <a href="#">Kazoku</a>
+    </div>
+    <div class="navbar-menus">
+      <ul class="navbar-menu">
+        <li class="navbar-menu-item"><a href="#" routerLink="/transactions">Transactions</a></li>
+        <li class="navbar-menu-item"><a href="#" routerLink="/budget">Budget</a></li>
+        <li *ngIf="!authenticated" class="navbar-menu-item"><a href="#" routerLink="/login">Login</a></li>
+        <li *ngIf="authenticated" class="navbar-menu-item">
+          <form action="#">
+            <input type="submit" value="Logout">
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

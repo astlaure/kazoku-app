@@ -1,0 +1,20 @@
+@use "../abstract/variables" as *;
+
+.form {
+  label {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  input, select, textarea {
+    display: block;
+    width: 100%;
+  }
+
+  .error-message {
+    margin: 0;
+    font-size: $text-sm;
+    color: red;
+    font-style: italic;
+  }
+}

@@ -1,0 +1,26 @@
+:host .container {
+  margin-top: 4rem;
+}
+
+.alert {
+  padding: 1rem;
+  border: thin solid black;
+}
+
+.alert.alert-error {
+  color: red;
+  background: rgba(255,0,0,0.1);
+  border: thin solid red;
+}
+
+.card {
+  padding: 1rem;
+  border: thin solid #d6d6d6;
+}
+
+.form button[type=submit] {
+  margin: 0 auto;
+  display: block;
+  width: 50%;
+  margin-top: 2rem;
+}

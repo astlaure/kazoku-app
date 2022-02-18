@@ -75,7 +75,8 @@
               "browserTarget": "kazoku-app:build:production"
             },
             "development": {
-              "browserTarget": "kazoku-app:build:development"
+              "browserTarget": "kazoku-app:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
