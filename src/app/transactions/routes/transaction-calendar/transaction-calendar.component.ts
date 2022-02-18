@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Transaction } from '../../models/transaction.model';
 import { CalendarOptions, DatesSetArg, EventClickArg } from '@fullcalendar/angular';
 import { DateTime } from 'luxon';
+import { CurrencyPipe, formatCurrency } from '@angular/common';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { DateTime } from 'luxon';
 })
 export class TransactionCalendarComponent implements OnInit {
   // transactions$ = new Observable<Transaction[]>();
+  transactions?: Transaction[];
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
 
@@ -29,11 +31,13 @@ export class TransactionCalendarComponent implements OnInit {
   };
 
   createModal = false;
+  detailsModal = false;
   totalAmount = 0;
   selectedDate = new Date();
+  selectedTransaction?: Transaction;
   queryParams = { startDate: 'string', endDate: 'string' };
 
-  constructor(private transactionService: TransactionService) { }
+  constructor(private transactionService: TransactionService, private currencyPipe: CurrencyPipe) { }
 
   ngOnInit(): void { }
 
@@ -53,6 +57,8 @@ export class TransactionCalendarComponent implements OnInit {
 
   handleEventClick(args: EventClickArg) {
     console.log('clicked', args);
+    this.selectedTransaction = this.transactions?.find((element) => element.id === +args.event.id);
+    this.detailsModal = true;
   }
 
   handleDatesSetClick(args: DatesSetArg) {
@@ -62,15 +68,24 @@ export class TransactionCalendarComponent implements OnInit {
     this.loadTransactions();
   }
 
+  closeDetails() {
+    this.detailsModal = false;
+  }
+
   loadTransactions() {
     this.transactionService.getTransactions(this.queryParams).subscribe({
       next: (values) => {
         let total = 0;
         this.calendarOptions.events = values.map((value) => {
-          total += value.total;
-          return { title: `${value.description} - ${value.total / 100}$`, date: value.transactionDate };
+          if (value.category === 'INCOMES') {
+            total -= value.total;
+          } else {
+            total += value.total;
+          }
+          return { title: `${value.description} - ${this.currencyPipe.transform(value.total / 100)}`, date: value.transactionDate, id: value.id.toString() };
         });
-        this.totalAmount = total / 100;
+        this.totalAmount = total * -1 / 100;
+        this.transactions = values;
       },
       error: () => {
         // show message

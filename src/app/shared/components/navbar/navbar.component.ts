@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +10,16 @@ import { AuthService } from '../../../auth/services/auth.service';
 export class NavbarComponent implements OnInit {
   authenticated = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.authenticated = !!this.authService.profile;
+    this.authService.profile.subscribe((value) => {
+      this.authenticated = !!value;
+    });
   }
 
+  onSubmit() {
+    this.authService.logout().subscribe(() => this.router.navigate(['/'], { replaceUrl: true }));
+  }
 }

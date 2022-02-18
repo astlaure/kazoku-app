@@ -25,6 +25,7 @@
   .navbar-menu {
     display: flex;
     margin-left: auto;
+    align-items: center;
   }
 
   .navbar-menu-item {
@@ -34,6 +35,25 @@
       padding: 0.25rem;
       text-transform: uppercase;
       text-decoration: none;
+      font-weight: 500;
+      color: #212529;
+
+      &:hover {
+        color: #6c757d;
+      }
+    }
+
+    input {
+      border: none;
+      text-transform: uppercase;
+      padding: 0.25rem;
+      cursor: pointer;
+      color: #212529;
+      font-weight: 500;
+
+      &:hover {
+        color: #6c757d;
+      }
     }
   }
 }

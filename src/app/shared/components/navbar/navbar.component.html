@@ -9,7 +9,7 @@
         <li class="navbar-menu-item"><a href="#" routerLink="/budget">Budget</a></li>
         <li *ngIf="!authenticated" class="navbar-menu-item"><a href="#" routerLink="/login">Login</a></li>
         <li *ngIf="authenticated" class="navbar-menu-item">
-          <form action="#">
+          <form action="#" (submit)="onSubmit()">
             <input type="submit" value="Logout">
           </form>
         </li>

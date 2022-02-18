@@ -1,0 +1,9 @@
+.fc .fc-button {
+  &.fc-prev-button,
+  &.fc-next-button {
+    .fc-icon {
+      line-height: 1.5;
+      vertical-align: initial;
+    }
+  }
+}

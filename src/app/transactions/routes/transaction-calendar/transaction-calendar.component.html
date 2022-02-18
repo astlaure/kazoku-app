@@ -1,5 +1,4 @@
 <div class="container">
-<!--  <a href="#" routerLink="/transactions/create">Create Transaction</a>-->
   <div class="header">
     <button type="button" (click)="toggleCreateModal()">Create Transaction</button>
     <h3>Total: {{totalAmount | currency}}</h3>
@@ -10,4 +9,10 @@
   <ng-container *ngIf="createModal">
     <app-add-transaction-modal [selectedDate]="selectedDate" (closeEvent)="closeEvent()"></app-add-transaction-modal>
   </ng-container>
+
+  <app-transaction-details-modal
+    *ngIf="detailsModal"
+    [transaction]="selectedTransaction"
+    (closeEvent)="closeDetails()"
+  ></app-transaction-details-modal>
 </div>

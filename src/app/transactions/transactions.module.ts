@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionCalendarComponent } from './routes/transaction-calendar/transaction-calendar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CreateTransactionComponent } from './routes/create-transaction/create-transaction.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { AddTransactionModalComponent } from './components/add-transaction-modal/add-transaction-modal.component';
+import { TransactionDetailsModalComponent } from './components/transaction-details-modal/transaction-details-modal.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -17,8 +17,8 @@ FullCalendarModule.registerPlugins([
 @NgModule({
   declarations: [
     TransactionCalendarComponent,
-    CreateTransactionComponent,
     AddTransactionModalComponent,
+    TransactionDetailsModalComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +26,9 @@ FullCalendarModule.registerPlugins([
     HttpClientModule,
     ReactiveFormsModule,
     FullCalendarModule
+  ],
+  providers: [
+    CurrencyPipe
   ]
 })
 export class TransactionsModule { }
